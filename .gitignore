@@ -1,0 +1,9 @@
+bin
+.env
+.idea
+*.pb.go
+*.pb.*.go
+.vscode
+swagger
+.DS_Store
+.air.toml
