@@ -1,6 +1,7 @@
 package errors
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -37,7 +38,8 @@ func (e *GoError) ErrorWithCause() string {
 }
 
 func (e *GoError) IsCodeEqual(err error) bool {
-	if ge, ok := err.(*GoError); ok {
+	var ge *GoError
+	if errors.As(err, &ge) {
 		return ge.Code == e.Code
 	}
 

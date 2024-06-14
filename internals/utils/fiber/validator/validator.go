@@ -1,6 +1,7 @@
 package validator
 
 import (
+	"errors"
 	"fmt"
 	"reflect"
 	"regexp"
@@ -60,7 +61,8 @@ func Regexp(fl validator.FieldLevel) bool {
 func (cv *CustomValidator) Validate(structRule interface{}) *errs.GoError {
 	if err := cv.Validator.Struct(structRule); err != nil {
 		formError := errs.New("Wrong Input")
-		validationErrors := err.(validator.ValidationErrors)
+		var validationErrors validator.ValidationErrors
+		errors.As(err, &validationErrors)
 
 		for _, e := range validationErrors {
 			jsonFieldName := getJSONFieldName(structRule, e.Field())
