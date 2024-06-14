@@ -9,4 +9,6 @@ import (
 //go:generate mockery --name=Interface
 type Interface interface {
 	Create(ctx context.Context, request *model.CreateRequest) (*model.CreateResponse, error)
+	Update(ctx context.Context, request *model.UpdateRequest) (*model.UpdateResponse, error)
+	Delete(ctx context.Context, request *model.DeleteRequest) (*model.DeleteResponse, error)
 }

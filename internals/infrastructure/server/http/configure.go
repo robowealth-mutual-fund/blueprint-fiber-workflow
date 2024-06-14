@@ -49,4 +49,6 @@ func (s *Server) blueprintGroup(router fiber.Router) {
 	api := router.Group("/todo")
 
 	api.Post("/", s.middleware.AcceptLanguageMiddleware, s.controller.todo.Create)
+	api.Put("/", s.middleware.AcceptLanguageMiddleware, s.controller.todo.Update)
+	api.Delete("/", s.middleware.AcceptLanguageMiddleware, s.controller.todo.Delete)
 }
